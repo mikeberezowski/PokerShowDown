@@ -26,5 +26,12 @@ namespace PokerConsoleApp.Models
             Hand = new Hand(cards);
             BestHand = rankCalculator.CalculateBestHand(Hand);
         }
+
+        public bool IsValid()
+        {
+            if (string.IsNullOrWhiteSpace(Name)) return false;
+
+            return Hand.IsValid();
+        }
     }
 }

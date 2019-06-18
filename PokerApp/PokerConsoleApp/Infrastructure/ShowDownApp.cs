@@ -20,10 +20,16 @@ namespace PokerConsoleApp.Infrastructure
         {
             var showDown = new ShowDown(handComparer);
             var rawData = dataProvider.ReadPlayerData();
+
             foreach (var player in rawData)
             {
-                showDown.AddPlayer(new Player(rankCalculator, player.Name, player.Hand));
+                var newPlayer = new Player(rankCalculator, player.Name, player.Hand);
+                if (newPlayer.IsValid())
+                {
+                    showDown.AddPlayer(newPlayer);
+                }
             }
+
             showDown.PrintWinner();
         }
     }

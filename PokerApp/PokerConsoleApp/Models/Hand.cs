@@ -8,9 +8,6 @@ namespace PokerConsoleApp.Models
 
         public List<Card> Cards { get; set; }
 
-        public Hand()
-        {
-        }
         public Hand(string cards)
         {
             Cards = new List<Card>();
@@ -25,6 +22,16 @@ namespace PokerConsoleApp.Models
             PopulateHistogram();
         }
 
+        public bool IsValid()
+        {
+            if (Cards.Count != 5) return false;
+
+            foreach(var card in Cards)
+            {
+                if (!card.IsValid()) return false;
+            }
+            return true;
+        }
         private void PopulateHistogram()
         {
             foreach (var item in Cards)
