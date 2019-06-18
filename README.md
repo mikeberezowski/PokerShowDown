@@ -22,11 +22,16 @@ One Pair
 High Card  
 
 ## Usage
-You can provide an input file in a .txt format 
+If you don't provide an input file a test file will be used (AppData\testData.txt)  
 
+There is a windows batch file which will run several test files. From the application directory run runtests.bat  
+```shell
+$ .\runtests.bat
+```
+You can provide an input file in a .txt format  
 ```shell
 $ dotnet run input.txt
-```
+```  
 The file data is in two lines:  
 \<Player Name\>  
 \<Player Hand\>  
