@@ -16,10 +16,10 @@ $ dotnet run
 The current implementation only accepts a single Showdown in a text file.  
 The current implementation handles a single Showdown with up to 10 players.  
 Only the following Poker hands are calculated:  
-Flush
-Three of a kind
-One Pair
-High Card
+Flush  
+Three of a kind  
+One Pair  
+High Card  
 
 ## Usage
 You can provide an input file in a .txt format 
