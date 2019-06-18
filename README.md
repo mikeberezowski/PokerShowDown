@@ -1,5 +1,8 @@
 # PokerShowDown #
 
+## PreRequisites
+This application requires .NET Core 2.2 or higher
+
 ## Installation
 
 ### Clone
