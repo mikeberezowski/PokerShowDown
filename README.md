@@ -25,23 +25,23 @@ You can provide an input file in a .txt format
 ```shell
 $ dotnet run input.txt
 ```
-The file data is in two lines:
-<Player Name>
-<Player Hand>
+The file data is in two lines:  
+\<Player Name\>  
+\<Player Hand\>  
 
-Where <Player Name> is a string denoting the player's name
-and <Player Hand> is a comma separated list of the cards in the following format:
-8S, 4D, 9H, 10C
+Where \<Player Name\> is a string denoting the player's name
+and \<Player Hand\> is a comma separated list of the cards in the following format:  
+8S, 4D, 9H, 10C  
 Where the first digits represent the card value: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
-The last digit is a single character representing the suit:
-H = Hearts
-D = Diamonds
-C = Clubs
-S = Spades
+The last digit is a single character representing the suit:  
+H = **Hearts**  
+D = **Diamonds**  
+C = **Clubs**  
+S = **Spades**  
 
-Example:
-PlayerOne
-4D, 5D, 4C, 4S, JD
+Example:  
+PlayerOne  
+4D, 5D, 4C, 4S, JD  
 
 ## Documentation
 Please see the documentation found in the /Documentation folder within the repository
