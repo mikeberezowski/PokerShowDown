@@ -7,8 +7,9 @@ namespace PokerConsoleApp.Models
     {
         public int Number { get; set; }
         public CardSuit Suit { get; set; }
-
+        public bool IsDrawn { get; set; }
         public Card() { }
+
         public Card(string cardData)
         {
             Number = MapNumber(cardData[0]);

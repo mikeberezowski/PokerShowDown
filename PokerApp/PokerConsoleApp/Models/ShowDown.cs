@@ -11,9 +11,9 @@ namespace PokerConsoleApp.Models
 
         private readonly IHandComparer handComparer;
 
-        public ShowDown()
+        public ShowDown(IHandComparer comparer)
         {
-            handComparer = new HandComparer();
+            handComparer = comparer;
             Players = new List<Player>();
         }
 

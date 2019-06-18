@@ -1,0 +1,6 @@
+Joe
+8S, 8D, AD, QD, JH
+Bob
+AS, QS, 8S, 6S, 4S
+Sally
+4S, 4H, 3H, QC, 8C

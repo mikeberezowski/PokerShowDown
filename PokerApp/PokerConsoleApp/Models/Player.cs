@@ -13,14 +13,15 @@ namespace PokerConsoleApp.Models
 
         public PokerHandRank BestHand { get; set; }
 
-        public Player()
+        public Player(IRankCalculator calculator)
         {
-            rankCalculator = new RankCalculator();
+            
+            rankCalculator = calculator;
         }
 
-        public Player(string name, string cards) : base()
+        public Player(IRankCalculator calculator, string name, string cards)
         {
-            rankCalculator = new RankCalculator();
+            rankCalculator = calculator;
             Name = name;
             Hand = new Hand(cards);
             BestHand = rankCalculator.CalculateBestHand(Hand);

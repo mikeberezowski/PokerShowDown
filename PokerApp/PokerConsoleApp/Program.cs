@@ -1,4 +1,7 @@
-﻿using PokerConsoleApp.Models;
+﻿using PokerConsoleApp.BusinessLogic;
+using PokerConsoleApp.Infrastructure;
+using System;
+using System.IO;
 
 namespace PokerConsoleApp
 {
@@ -40,29 +43,63 @@ namespace PokerConsoleApp
         private const string round4player3 = "Jen";
         private const string round4player3cards = "5C, 7D, 8H, 9S, QD";
 
+
         static void Main(string[] args)
         {
-            var game = new ShowDown();
-            game.AddPlayer(new Player(round1player1, round1player1cards));
-            game.AddPlayer(new Player(round1player2, round1player2cards));
-            game.AddPlayer(new Player(round1player3, round1player3cards));
-            game.PrintWinner();
-            var game2 = new ShowDown();
-            game2.AddPlayer(new Player(round2player1, round2player1cards));
-            game2.AddPlayer(new Player(round2player2, round2player2cards));
-            game2.AddPlayer(new Player(round2player3, round2player3cards));
-            game2.PrintWinner();
-            var game3 = new ShowDown();
-            game3.AddPlayer(new Player(round3player1, round3player1cards));
-            game3.AddPlayer(new Player(round3player2, round3player2cards));
-            game3.AddPlayer(new Player(round3player3, round3player3cards));
-            game3.PrintWinner();
+            var dataProvider = new DataProvider();
+            var comparer = new HandComparer();
+            var calculator = new RankCalculator();
 
-            var game4 = new ShowDown();
-            game4.AddPlayer(new Player(round4player1, round4player1cards));
-            game4.AddPlayer(new Player(round4player2, round4player2cards));
-            game4.AddPlayer(new Player(round4player3, round4player3cards));
-            game4.PrintWinner();
+            if (args.Length > 0)
+            {
+                if (File.Exists(args[0]))
+                {
+                    dataProvider.InputFile = args[0];
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: File does not exist. This application takes a single parameter of an input text file.");
+                    return;
+                }
+            }
+            else
+            {
+                dataProvider.InputFile = "AppData/testData.txt";
+            }
+
+
+            var showdownApp = new ShowDownApp(dataProvider, calculator, comparer);
+
+            showdownApp.Run();
+
+
+            //var comparer = new HandComparer();
+            //var calculator = new RankCalculator();
+            //var game = new ShowDown(comparer);
+            //game.AddPlayer(new Player(calculator, round1player1, round1player1cards));
+            //game.AddPlayer(new Player(calculator, round1player2, round1player2cards));
+            //game.AddPlayer(new Player(calculator, round1player3, round1player3cards));
+            //game.PrintWinner();
+            //var game2 = new ShowDown(comparer);
+            //game2.AddPlayer(new Player(calculator, round2player1, round2player1cards));
+            //game2.AddPlayer(new Player(calculator, round2player2, round2player2cards));
+            //game2.AddPlayer(new Player(calculator, round2player3, round2player3cards));
+            //game2.PrintWinner();
+            //var game3 = new ShowDown(comparer);
+            //game3.AddPlayer(new Player(calculator, round3player1, round3player1cards));
+            //game3.AddPlayer(new Player(calculator, round3player2, round3player2cards));
+            //game3.AddPlayer(new Player(calculator, round3player3, round3player3cards));
+            //game3.PrintWinner();
+
+            //var game4 = new ShowDown(comparer);
+            //game4.AddPlayer(new Player(calculator, round4player1, round4player1cards));
+            //game4.AddPlayer(new Player(calculator, round4player2, round4player2cards));
+            //game4.AddPlayer(new Player(calculator, round4player3, round4player3cards));
+            //game4.PrintWinner();
+        }
+        private static void loadData()
+        {
+
         }
     }
 }
