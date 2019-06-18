@@ -1,26 +1,47 @@
 # PokerShowDown #
 
-## Problem Description ##
-Poker is a common card game with many variations. We would like to build a library which will take poker hands as input and output the player with the winning hand for a particular showdown. 
+## Installation
 
-## Input ##
-The library accepts data input in the following format:
-<Name>
-<Hand>
-  
-There are two lines of data, where <Name> is the name of the player (as a string of text) and <Hand> is a five-card poker hand in the following format:
--	A comma separated list of cards
--	Each card is two characters – one character for the card index and one for the suit
--	Card indexes are listed as A,2,3,4,5,6,7,8,9,J,Q,K representing the card value
--	Suites are listed as S,C,D,H for Spades, Clubs, Diamonds and Hearts respectively
+### Clone
+- Clone this repo to your local machine using `https://github.com/mikeberezowski/PokerShowDown.git`
+
+From the root directory navigate to PokerApp\PokerConsoleApp
+
+```shell
+$ cd PokerApp\PokerConsoleApp
+$ dotnet run
+```
+
+## Features
+The current implementation handles a single Showdown with up to 10 players. Only the following Poker hands are calculated:
+Flush
+Three of a kind
+One Pair
+High Card
+
+## Usage
+You can provide an input file in a .txt format 
+
+```shell
+$ dotnet run input.txt
+```
+The file data is in two lines:
+<Player Name>
+<Player Hand>
+
+Where <Player Name> is a string denoting the player's name
+and <Player Hand> is a comma separated list of the cards in the following format:
+8S, 4D, 9H, 10C
+Where the first digits represent the card value: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
+The last digit is a single character representing the suit:
+H = Hearts
+D = Diamonds
+C = Clubs
+S = Spades
 
 Example:
-Joe
-AD, 5C, JH, 7S, 4C
-(interpreted as: Joe has a hand consisting of the following cards: Ace of Diamonds, Five of Clubs, Jack of Hearts, Seven of Spades and Four of Clubs). 
+PlayerOne
+4D, 5D, 4C, 4S, JD
 
-## Restrictions ##
--	Each player has only one hand of cards
--	Each hand only has 5 cards
--	Each card can only exist in one player’s hand
-
+## Documentation
+Please see the documentation found in the /Documentation folder within the repository
