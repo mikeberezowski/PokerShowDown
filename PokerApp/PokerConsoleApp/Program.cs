@@ -27,13 +27,11 @@ namespace PokerConsoleApp
             }
             else
             {
-                var path = AppDomain.CurrentDomain.BaseDirectory;
-
-                dataProvider.InputFile = @"E:\\Code\\PokerShowDown\\PokerApp\\PokerConsoleApp\\AppData\\test1.txt";
+                var tempPath = dataProvider.GetApplicationRoot();
+                dataProvider.InputFile = tempPath + @"\\AppData\\testData.txt";
             }
 
             var showdownApp = new ShowDownApp(dataProvider, calculator, comparer);
-
             showdownApp.Run();
         }
     }

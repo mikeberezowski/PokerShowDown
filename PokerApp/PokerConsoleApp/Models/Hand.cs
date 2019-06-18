@@ -6,13 +6,13 @@ namespace PokerConsoleApp.Models
     public class Hand
     {
         public SortedDictionary<int, int> histogram = new SortedDictionary<int, int>();
-
         public List<Card> Cards { get; set; }
 
         public Hand(string cards, Deck deck)
         {
             Cards = new List<Card>();
             var cardList = cards.Split(',');
+
             foreach (var card in cardList)
             {
                 Cards.Add(new Card(deck, card.Trim()));
@@ -31,8 +31,10 @@ namespace PokerConsoleApp.Models
             {
                 if (!card.IsValid()) return false;
             }
+
             return true;
         }
+
         public int GetHighestPair()
         {
             int temp = histogram.FirstOrDefault(x => x.Value == 2).Key;
@@ -44,6 +46,7 @@ namespace PokerConsoleApp.Models
 
             return temp;
         }
+
         private void PopulateHistogram()
         {
             foreach (var item in Cards)

@@ -6,5 +6,6 @@ namespace PokerConsoleApp.Infrastructure
     public interface IDataProvider
     {
         List<ShowDownDto> ReadPlayerData();
+        string GetApplicationRoot();
     }
 }

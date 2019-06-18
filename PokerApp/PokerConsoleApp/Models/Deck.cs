@@ -24,6 +24,7 @@ namespace PokerConsoleApp.Models
                 }
             }
         }
+
         public void ResetDeck()
         {
             foreach(var card in Cards)
@@ -31,18 +32,22 @@ namespace PokerConsoleApp.Models
                 card.IsDrawn = false;
             }
         }
+
         public bool IsCardTaken(Card card)
         {
             var findCard = Cards.Where(x => x.Suit == card.Suit && x.Value == card.Value).FirstOrDefault();
+
             if(findCard != null)
             {
                 return findCard.IsDrawn;
             }
             return false;
         }
+
         public void DrawCard(Card card)
         {
             var findCard = Cards.Where(x => x.Suit == card.Suit && x.Value == card.Value).FirstOrDefault();
+
             if (findCard != null)
             {
                 findCard.IsDrawn = true;

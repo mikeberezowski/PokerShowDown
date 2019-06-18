@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PokerConsoleApp.Infrastructure
 {
@@ -27,19 +28,32 @@ namespace PokerConsoleApp.Infrastructure
                     stack.Push(line);
                     continue;
                 }
+
                 var newPlayer = new ShowDownDto
                 {
                     Name = stack.Pop(),
-                    Hand = line
+                    Hand = line.ToUpper()
                 };
-                if (newPlayer.IsValid()) {
+
+                if (newPlayer.IsValid())
+                {
                     showDownList.Add(newPlayer);
-                } else
+                }
+                else
                 {
                     Console.WriteLine("Error on input Data: Name = {0}, Hand = {1}", newPlayer.Name, newPlayer.Hand);
                 }
             }
+
             return showDownList;
+        }
+        public string GetApplicationRoot()
+        {
+            var exePath = Path.GetDirectoryName(System.Reflection
+                              .Assembly.GetExecutingAssembly().CodeBase);
+            Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
+            var appRoot = appPathMatcher.Match(exePath).Value;
+            return appRoot;
         }
     }
 }

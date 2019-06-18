@@ -9,8 +9,11 @@
         {
             if (string.IsNullOrWhiteSpace(Name)) return false;
             if (string.IsNullOrWhiteSpace(Hand)) return false;
+
             var handCount = Hand.Split(',');
+
             if (handCount.Length != 5) return false;
+
             return true;
         }
     }

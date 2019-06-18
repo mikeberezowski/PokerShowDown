@@ -21,6 +21,7 @@ namespace PokerConsoleApp.BusinessLogic
             {
                 if (card.Suit != suit) return false;
             }
+
             return true;
         }
 
@@ -30,14 +31,17 @@ namespace PokerConsoleApp.BusinessLogic
             {
                 if (hist.Value == 3) return true;
             }
+
             return false;
         }
+
         private bool IsOnePair(Hand hand)
         {
             foreach (var hist in hand.histogram)
             {
                 if (hist.Value == 2) return true;
             }
+
             return false;
         }
     }

@@ -5,12 +5,12 @@ namespace PokerConsoleApp.Models
 {
     public class Player
     {
-        private IRankCalculator rankCalculator;
-        private readonly Deck gameDeck;
-
         public string Name { get; set; }
         public Hand Hand { get; set; }
         public PokerHandRank BestHand { get; set; }
+
+        private IRankCalculator rankCalculator;
+        private readonly Deck gameDeck;
 
         public Player(IRankCalculator calculator, Deck deck)
         {

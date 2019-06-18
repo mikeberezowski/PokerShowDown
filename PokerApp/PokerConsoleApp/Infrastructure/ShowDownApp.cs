@@ -26,6 +26,7 @@ namespace PokerConsoleApp.Infrastructure
             foreach (var player in rawData)
             {
                 var newPlayer = new Player(rankCalculator, gameDeck, player.Name, player.Hand);
+
                 if (newPlayer.IsValid())
                 {
                     showDown.AddPlayer(newPlayer);
