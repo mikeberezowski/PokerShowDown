@@ -35,8 +35,8 @@ namespace PokerConsoleApp.BusinessLogic
         }
         private Player CompareOnePair(Player first, Player second)
         {
-            var firstCard = first.Hand.histogram.FirstOrDefault(x => x.Value == 2).Key;
-            var secondCard = second.Hand.histogram.FirstOrDefault(x => x.Value == 2).Key;
+            var firstCard = first.Hand.GetHighestPair();
+            var secondCard = second.Hand.GetHighestPair();
 
             if (firstCard == secondCard) return CompareHighCards(first, second);
             if (firstCard > secondCard) return first;
@@ -46,9 +46,9 @@ namespace PokerConsoleApp.BusinessLogic
         {
             for (var i = 0; i < first.Hand.Cards.Count; i++)
             {
-                if (first.Hand.Cards[i].Number == second.Hand.Cards[i].Number) continue;
-                if (first.Hand.Cards[i].Number > second.Hand.Cards[i].Number) return first;
-                if (first.Hand.Cards[i].Number < second.Hand.Cards[i].Number) return second;
+                if (first.Hand.Cards[i].Value == second.Hand.Cards[i].Value) continue;
+                if (first.Hand.Cards[i].Value > second.Hand.Cards[i].Value) return first;
+                if (first.Hand.Cards[i].Value < second.Hand.Cards[i].Value) return second;
             }
             return first;
         }

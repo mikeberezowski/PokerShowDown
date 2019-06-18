@@ -34,7 +34,14 @@ namespace PokerConsoleApp.Models
         }
         public void PrintWinner()
         {
-            Console.WriteLine("{0} wins", CurrentWinner.Name);
+            if (CurrentWinner == null)
+            {
+                Console.WriteLine("No valid hands in the input");
+            }
+            else
+            {
+                Console.WriteLine("{0} wins", CurrentWinner.Name);
+            }
         }
     }
 }

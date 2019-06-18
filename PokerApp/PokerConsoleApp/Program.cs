@@ -29,7 +29,7 @@ namespace PokerConsoleApp
             {
                 var path = AppDomain.CurrentDomain.BaseDirectory;
 
-                dataProvider.InputFile = @"E:\\Code\\PokerShowDown\\PokerApp\\PokerConsoleApp\\AppData\\testData.txt";
+                dataProvider.InputFile = @"E:\\Code\\PokerShowDown\\PokerApp\\PokerConsoleApp\\AppData\\test1.txt";
             }
 
             var showdownApp = new ShowDownApp(dataProvider, calculator, comparer);

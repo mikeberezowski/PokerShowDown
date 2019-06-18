@@ -5,14 +5,20 @@ namespace PokerConsoleApp.Models
 {
     public class Card
     {
-        public int Number { get; set; }
+        public int Value { get; set; }
         public CardSuit Suit { get; set; }
         public bool IsDrawn { get; set; }
         private bool isValid { get; set; }
-        public Card() { }
+        private Deck gameDeck;
 
-        public Card(string cardData)
+        public Card(Deck deck)
         {
+            gameDeck = deck;
+        }
+
+        public Card(Deck deck, string cardData)
+        {
+            gameDeck = deck;
             // Business rules: A card can be up to three characters in total i.e. 10D
             // Anything else is considered unacceptable data
             if (cardData.Length > 3)
@@ -24,21 +30,44 @@ namespace PokerConsoleApp.Models
             //Here we have a two digit number
             if (cardData.Length > 2)
             {
-                Number = MapNumber(cardData.Substring(0, 2));
+                Value = MapNumber(cardData.Substring(0, 2));
                 Suit = MapSuit(cardData.Substring(cardData.Length - 1, 1));
-                isValid = true;
+
+                // Check to see if this card is already in someone else's hand
+                if (gameDeck.IsCardTaken(this))
+                {
+                    isValid = false;
+                } else
+                {
+                    gameDeck.DrawCard(this);
+                    isValid = true;
+                }
             }
             // Here we have a single digit for the card value
             else
             {
-                Number = MapNumber(cardData[0].ToString());
+                Value = MapNumber(cardData[0].ToString());
                 Suit = MapSuit(cardData[1].ToString());
-                isValid = true;
+                // Check to see if this card is already in someone else's hand
+                if (gameDeck.IsCardTaken(this))
+                {
+                    isValid = false;
+                }
+                else
+                {
+                    gameDeck.DrawCard(this);
+                    isValid = true;
+                }
             }
         }
 
         public bool IsValid()
         {
+            if(Value > 14 || Value < 2)
+            {
+                isValid = false;
+            }
+
             return isValid;
         }
         private int MapNumber(string inputDigit)

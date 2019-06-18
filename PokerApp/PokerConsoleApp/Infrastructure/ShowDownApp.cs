@@ -20,10 +20,12 @@ namespace PokerConsoleApp.Infrastructure
         {
             var showDown = new ShowDown(handComparer);
             var rawData = dataProvider.ReadPlayerData();
+            var gameDeck = new Deck();
+            gameDeck.InitializeDeck();
 
             foreach (var player in rawData)
             {
-                var newPlayer = new Player(rankCalculator, player.Name, player.Hand);
+                var newPlayer = new Player(rankCalculator, gameDeck, player.Name, player.Hand);
                 if (newPlayer.IsValid())
                 {
                     showDown.AddPlayer(newPlayer);

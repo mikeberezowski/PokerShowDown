@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PokerConsoleApp.Models
 {
@@ -8,17 +9,17 @@ namespace PokerConsoleApp.Models
 
         public List<Card> Cards { get; set; }
 
-        public Hand(string cards)
+        public Hand(string cards, Deck deck)
         {
             Cards = new List<Card>();
             var cardList = cards.Split(',');
             foreach (var card in cardList)
             {
-                Cards.Add(new Card(card.Trim()));
+                Cards.Add(new Card(deck, card.Trim()));
             }
 
             // Sort the list for easier comparison
-            Cards.Sort((p, q) => q.Number.CompareTo(p.Number));
+            Cards.Sort((p, q) => q.Value.CompareTo(p.Value));
             PopulateHistogram();
         }
 
@@ -32,17 +33,28 @@ namespace PokerConsoleApp.Models
             }
             return true;
         }
+        public int GetHighestPair()
+        {
+            int temp = histogram.FirstOrDefault(x => x.Value == 2).Key;
+
+            foreach (var pair in histogram)
+            {
+                if (pair.Value == 2 && pair.Key > temp) temp = pair.Key;
+            }
+
+            return temp;
+        }
         private void PopulateHistogram()
         {
             foreach (var item in Cards)
             {
-                if (histogram.ContainsKey(item.Number))
+                if (histogram.ContainsKey(item.Value))
                 {
-                    histogram[item.Number]++;
+                    histogram[item.Value]++;
                 }
                 else
                 {
-                    histogram[item.Number] = 1;
+                    histogram[item.Value] = 1;
                 }
             }
         }
