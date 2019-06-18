@@ -12,37 +12,54 @@ namespace PokerConsoleApp.Models
 
         public Card(string cardData)
         {
-            Number = MapNumber(cardData[0]);
-            Suit = MapSuit(cardData[1]);
+            // Business rules: A card can be up to three characters in total i.e. 10D
+            // Anything else is considered unacceptable data
+            if (cardData.Length > 3)
+            {
+                Console.WriteLine("Invalid Card data : {0}", cardData);
+            }
+
+            //Here we have a two digit number
+            if (cardData.Length > 2)
+            {
+                Number = MapNumber(cardData.Substring(0, 2));
+                Suit = MapSuit(cardData.Substring(cardData.Length - 1, 1));
+            }
+            // Here we have a single digit for the card value
+            else
+            {
+                Number = MapNumber(cardData[0].ToString());
+                Suit = MapSuit(cardData[1].ToString());
+            }
         }
 
-        private int MapNumber(char inputChar)
+        private int MapNumber(string inputDigit)
         {
             // if the number is a digit, simply return that digit
-            if (char.IsNumber(inputChar))
+            if (int.TryParse(inputDigit, out int value))
             {
-                return Convert.ToInt32(char.GetNumericValue(inputChar));
+                return value;
             }
 
             // otherwise convert to a numeric value
-            switch (inputChar)
+            switch (inputDigit)
             {
-                case ('J'): return 11;
-                case ('Q'): return 12;
-                case ('K'): return 13;
-                case ('A'): return 14;
+                case ("J"): return 11;
+                case ("Q"): return 12;
+                case ("K"): return 13;
+                case ("A"): return 14;
                 default: return 0;
             }
         }
 
-        private CardSuit MapSuit(char inputSuit)
+        private CardSuit MapSuit(string inputSuit)
         {
             switch (inputSuit)
             {
-                case ('S'): return CardSuit.Spades;
-                case ('C'): return CardSuit.Clubs;
-                case ('D'): return CardSuit.Diamonds;
-                case ('H'): return CardSuit.Hearts;
+                case ("S"): return CardSuit.Spades;
+                case ("C"): return CardSuit.Clubs;
+                case ("D"): return CardSuit.Diamonds;
+                case ("H"): return CardSuit.Hearts;
                 default: return CardSuit.Spades;
             }
         }
