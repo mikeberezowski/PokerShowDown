@@ -46,4 +46,4 @@ PlayerOne
 4D, 5D, 4C, 4S, JD  
 
 ## Documentation
-Please see the documentation found in the /Documentation folder within the repository
+Please see the documentation found in the [/Documentation](https://github.com/mikeberezowski/PokerShowDown/tree/master/Documentation) folder within the repository
